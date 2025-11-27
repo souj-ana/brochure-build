@@ -111,6 +111,9 @@ const Home = () => {
               </AccordionContent>
             </AccordionItem>
           </Accordion>
+          <p className="text-center text-muted-foreground mt-8">
+            Have more questions? Reach out to <a href="mailto:artist@yourvault.art" className="text-primary hover:underline">artist@yourvault.art</a>
+          </p>
         </div>
       </section>
 
@@ -135,6 +138,7 @@ const Home = () => {
       <footer className="py-12 px-6 bg-card border-t border-border">
         <div className="container mx-auto text-center text-muted-foreground">
           <p>© 2024 Vault. Empowering artists worldwide.</p>
+          <p className="mt-2">Questions? Contact us at <a href="mailto:artist@yourvault.art" className="text-primary hover:underline">artist@yourvault.art</a></p>
         </div>
       </footer>
     </div>
