@@ -1,1 +1,4 @@
 project_id = "odxditsaaddeeufjkmmu"
+
+[functions.submit-artist-application]
+verify_jwt = false
