@@ -25,6 +25,7 @@ const Signup = () => {
     accepts_commissioned_work: "no",
     hosts_workshops: "no",
     privacy_accepted: false,
+    marketing_consent: false,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -36,7 +37,7 @@ const Signup = () => {
     e.preventDefault();
     
     if (!formData.privacy_accepted) {
-      toast.error("Please accept the privacy policy to continue");
+      toast.error("Please accept the data processing terms to continue");
       return;
     }
     
@@ -55,6 +56,7 @@ const Signup = () => {
           art_shows_participation: formData.art_shows_participation || null,
           accepts_commissioned_work: formData.accepts_commissioned_work === "yes",
           hosts_workshops: formData.hosts_workshops === "yes",
+          marketing_consent: formData.marketing_consent,
         },
       });
 
@@ -285,19 +287,45 @@ const Signup = () => {
                 </RadioGroup>
               </div>
 
-              {/* Privacy Policy */}
-              <div className="flex items-start space-x-3 mt-8 p-4 bg-muted/50 rounded-lg">
-                <Checkbox
-                  id="privacy_accepted"
-                  checked={formData.privacy_accepted}
-                  onCheckedChange={(checked) => 
-                    setFormData(prev => ({ ...prev, privacy_accepted: checked === true }))
-                  }
-                  className="mt-1"
-                />
-                <Label htmlFor="privacy_accepted" className="text-sm font-normal cursor-pointer leading-relaxed">
-                  I agree to Vault's privacy policy and understand that my personal information (including name, email, phone number, and Instagram handle) will be stored securely and used solely for platform communication and artist onboarding purposes. I consent to Vault contacting me regarding my application and future opportunities. *
-                </Label>
+              {/* GDPR Consent - Data Processing (Required) */}
+              <div className="space-y-4 mt-8 p-6 bg-muted/50 rounded-lg border border-border">
+                <div className="flex items-start space-x-3">
+                  <Checkbox
+                    id="privacy_accepted"
+                    checked={formData.privacy_accepted}
+                    onCheckedChange={(checked) => 
+                      setFormData(prev => ({ ...prev, privacy_accepted: checked === true }))
+                    }
+                    className="mt-1"
+                  />
+                  <div className="flex-1">
+                    <Label htmlFor="privacy_accepted" className="text-sm font-medium cursor-pointer leading-relaxed">
+                      Data Processing Agreement (Required) *
+                    </Label>
+                    <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">
+                      I consent to Vault (data controller) processing my personal information (name, email, phone number, Instagram handle, qualifications, and portfolio details) for the purpose of reviewing my artist application and account setup. Legal basis: Consent (GDPR Art. 6(1)(a)). Data retention: Your data will be stored for 2 years or until you request deletion. You have the right to access, rectify, delete, or port your data, and to withdraw consent at any time by contacting <a href="mailto:artist@yourvault.art" className="text-primary hover:underline">artist@yourvault.art</a>. Withdrawal does not affect prior processing.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-3 pt-4 border-t border-border/50">
+                  <Checkbox
+                    id="marketing_consent"
+                    checked={formData.marketing_consent}
+                    onCheckedChange={(checked) => 
+                      setFormData(prev => ({ ...prev, marketing_consent: checked === true }))
+                    }
+                    className="mt-1"
+                  />
+                  <div className="flex-1">
+                    <Label htmlFor="marketing_consent" className="text-sm font-medium cursor-pointer leading-relaxed">
+                      Marketing Communications (Optional)
+                    </Label>
+                    <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">
+                      I consent to receive marketing communications, platform updates, and information about future artist opportunities from Vault via email. You can withdraw this consent at any time by clicking unsubscribe in our emails or contacting <a href="mailto:artist@yourvault.art" className="text-primary hover:underline">artist@yourvault.art</a>.
+                    </p>
+                  </div>
+                </div>
               </div>
 
               <HeroButton type="submit" disabled={isLoading} className="w-full mt-8">

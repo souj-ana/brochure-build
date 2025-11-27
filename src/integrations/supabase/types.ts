@@ -23,6 +23,7 @@ export type Database = {
           hosts_workshops: boolean
           id: string
           instagram_handle: string
+          marketing_consent: boolean
           minimum_price: string
           name: string
           phone_number: string | null
@@ -38,6 +39,7 @@ export type Database = {
           hosts_workshops?: boolean
           id?: string
           instagram_handle: string
+          marketing_consent?: boolean
           minimum_price: string
           name: string
           phone_number?: string | null
@@ -53,6 +55,7 @@ export type Database = {
           hosts_workshops?: boolean
           id?: string
           instagram_handle?: string
+          marketing_consent?: boolean
           minimum_price?: string
           name?: string
           phone_number?: string | null
