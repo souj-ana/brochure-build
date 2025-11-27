@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { HeroButton } from "@/components/ui/button-variants";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { CheckCircle2 } from "lucide-react";
@@ -20,6 +21,8 @@ const Signup = () => {
     years_of_experience: "",
     art_shows_participation: "",
     minimum_price: "",
+    accepts_commissioned_work: "no",
+    hosts_workshops: "no",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -44,6 +47,8 @@ const Signup = () => {
             years_of_experience: parseInt(formData.years_of_experience),
             art_shows_participation: formData.art_shows_participation,
             minimum_price: formData.minimum_price,
+            accepts_commissioned_work: formData.accepts_commissioned_work === "yes",
+            hosts_workshops: formData.hosts_workshops === "yes",
           },
         ]);
 
@@ -231,6 +236,44 @@ const Signup = () => {
                   placeholder="e.g., $500 or $50/sqft"
                   className="mt-2 h-12 border-2"
                 />
+              </div>
+
+              {/* Commissioned Work */}
+              <div>
+                <Label className="text-base">Do you accept commissioned work? *</Label>
+                <RadioGroup
+                  value={formData.accepts_commissioned_work}
+                  onValueChange={(value) => setFormData(prev => ({ ...prev, accepts_commissioned_work: value }))}
+                  className="mt-3 flex gap-6"
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="yes" id="commissioned-yes" />
+                    <Label htmlFor="commissioned-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="commissioned-no" />
+                    <Label htmlFor="commissioned-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+
+              {/* Workshops */}
+              <div>
+                <Label className="text-base">Do you host workshops or classes? *</Label>
+                <RadioGroup
+                  value={formData.hosts_workshops}
+                  onValueChange={(value) => setFormData(prev => ({ ...prev, hosts_workshops: value }))}
+                  className="mt-3 flex gap-6"
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="yes" id="workshops-yes" />
+                    <Label htmlFor="workshops-yes" className="font-normal cursor-pointer">Yes</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="no" id="workshops-no" />
+                    <Label htmlFor="workshops-no" className="font-normal cursor-pointer">No</Label>
+                  </div>
+                </RadioGroup>
               </div>
 
               <HeroButton type="submit" disabled={isLoading} className="w-full mt-8">
