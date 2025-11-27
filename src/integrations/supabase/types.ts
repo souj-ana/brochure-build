@@ -27,6 +27,7 @@ export type Database = {
           name: string
           phone_number: string | null
           qualifications: string | null
+          verified: boolean
           years_of_experience: number
         }
         Insert: {
@@ -41,6 +42,7 @@ export type Database = {
           name: string
           phone_number?: string | null
           qualifications?: string | null
+          verified?: boolean
           years_of_experience: number
         }
         Update: {
@@ -55,6 +57,7 @@ export type Database = {
           name?: string
           phone_number?: string | null
           qualifications?: string | null
+          verified?: boolean
           years_of_experience?: number
         }
         Relationships: []
