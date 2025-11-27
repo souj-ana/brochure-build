@@ -1,14 +1,10 @@
 import { Header } from "@/components/Header";
-import { WaitlistForm } from "@/components/WaitlistForm";
 import { useNavigate } from "react-router-dom";
 import { Palette, TrendingUp, Users } from "lucide-react";
+import { HeroButton } from "@/components/ui/button-variants";
 
 const Home = () => {
   const navigate = useNavigate();
-
-  const handleWaitlistSuccess = () => {
-    navigate("/signup");
-  };
 
   const features = [
     {
@@ -43,7 +39,9 @@ const Home = () => {
             Join a vibrant community where artists thrive, sell their work, and connect with community who appreciate true creativity. Be part of something extraordinary.
           </p>
           <div className="flex justify-center animate-slide-up" style={{ animationDelay: "0.2s" }}>
-            <WaitlistForm onSuccess={handleWaitlistSuccess} />
+            <HeroButton onClick={() => navigate("/signup")} className="text-lg px-12 py-6">
+              Get Started
+            </HeroButton>
           </div>
         </div>
       </section>
@@ -85,9 +83,9 @@ const Home = () => {
             Join our waitlist and be among the first artists to launch on our platform.
           </p>
           <div className="flex justify-center">
-            <div className="bg-background/95 backdrop-blur-sm p-8 rounded-2xl shadow-elegant max-w-lg w-full">
-              <WaitlistForm onSuccess={handleWaitlistSuccess} buttonText="Join Waitlist" compact />
-            </div>
+            <HeroButton onClick={() => navigate("/signup")} className="text-lg px-12 py-6">
+              Join Waitlist
+            </HeroButton>
           </div>
         </div>
       </section>
