@@ -107,7 +107,7 @@ const Home = () => {
                 Does Vault take commission from the sale of my paintings?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                We are artist first company. We will add our platform & transaction fee.
+                We are an artist first company. We will add our platform & transaction fee to the price artist sets for the painting.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
