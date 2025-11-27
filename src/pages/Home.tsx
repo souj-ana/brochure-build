@@ -2,6 +2,12 @@ import { Header } from "@/components/Header";
 import { useNavigate } from "react-router-dom";
 import { Palette, TrendingUp, Users } from "lucide-react";
 import { HeroButton } from "@/components/ui/button-variants";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -70,6 +76,41 @@ const Home = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 px-6 bg-background">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-12 text-center">
+            Frequently Asked Questions
+          </h2>
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="item-1" className="border-border">
+              <AccordionTrigger className="text-lg font-semibold text-foreground hover:text-primary">
+                Will Vault charge a fee for creating my portfolio on their platform?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                No, Vault will not charge a fee for creating portfolio.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-2" className="border-border">
+              <AccordionTrigger className="text-lg font-semibold text-foreground hover:text-primary">
+                Can I sell prints of my original paintings?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                No, Vault exclusively sells original pieces only. If you intend to sell prints, we recommend using other platforms and do not list that painting on our platform.
+              </AccordionContent>
+            </AccordionItem>
+            <AccordionItem value="item-3" className="border-border">
+              <AccordionTrigger className="text-lg font-semibold text-foreground hover:text-primary">
+                Does Vault take commission from the sale of my paintings?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                We are artist first company. We will add our platform & transaction fee.
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
         </div>
       </section>
 
