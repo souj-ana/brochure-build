@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { HeroButton } from "@/components/ui/button-variants";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { CheckCircle2 } from "lucide-react";
@@ -23,6 +24,7 @@ const Signup = () => {
     minimum_price: "",
     accepts_commissioned_work: "no",
     hosts_workshops: "no",
+    privacy_accepted: false,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -32,6 +34,12 @@ const Signup = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!formData.privacy_accepted) {
+      toast.error("Please accept the privacy policy to continue");
+      return;
+    }
+    
     setIsLoading(true);
 
     try {
@@ -275,6 +283,21 @@ const Signup = () => {
                     <Label htmlFor="workshops-no" className="font-normal cursor-pointer">No</Label>
                   </div>
                 </RadioGroup>
+              </div>
+
+              {/* Privacy Policy */}
+              <div className="flex items-start space-x-3 mt-8 p-4 bg-muted/50 rounded-lg">
+                <Checkbox
+                  id="privacy_accepted"
+                  checked={formData.privacy_accepted}
+                  onCheckedChange={(checked) => 
+                    setFormData(prev => ({ ...prev, privacy_accepted: checked === true }))
+                  }
+                  className="mt-1"
+                />
+                <Label htmlFor="privacy_accepted" className="text-sm font-normal cursor-pointer leading-relaxed">
+                  I agree to Vault's privacy policy and understand that my personal information (including name, email, phone number, and Instagram handle) will be stored securely and used solely for platform communication and artist onboarding purposes. I consent to Vault contacting me regarding my application and future opportunities. *
+                </Label>
               </div>
 
               <HeroButton type="submit" disabled={isLoading} className="w-full mt-8">
