@@ -35,35 +35,36 @@ const Signup = () => {
     setIsLoading(true);
 
     try {
-      const { error } = await supabase
-        .from("artists_waitlist")
-        .insert([
-          {
-            name: formData.name,
-            email: formData.email,
-            phone_number: formData.phone_number || null,
-            instagram_handle: formData.instagram_handle,
-            qualifications: formData.qualifications || null,
-            years_of_experience: parseInt(formData.years_of_experience),
-            art_shows_participation: formData.art_shows_participation,
-            minimum_price: formData.minimum_price,
-            accepts_commissioned_work: formData.accepts_commissioned_work === "yes",
-            hosts_workshops: formData.hosts_workshops === "yes",
-          },
-        ]);
+      const { data, error } = await supabase.functions.invoke('submit-artist-application', {
+        body: {
+          name: formData.name,
+          email: formData.email,
+          phone_number: formData.phone_number || null,
+          instagram_handle: formData.instagram_handle,
+          qualifications: formData.qualifications || null,
+          years_of_experience: parseInt(formData.years_of_experience),
+          minimum_price: formData.minimum_price,
+          art_shows_participation: formData.art_shows_participation || null,
+          accepts_commissioned_work: formData.accepts_commissioned_work === "yes",
+          hosts_workshops: formData.hosts_workshops === "yes",
+        },
+      });
 
-      if (error) {
-        if (error.code === '23505') {
-          toast.error("This email is already registered");
+      if (error) throw error;
+
+      if (data?.error) {
+        if (data.error.includes('Too many submissions')) {
+          toast.error("You've submitted too many applications. Please try again later.");
+        } else if (data.error.includes('Validation failed')) {
+          toast.error("Please check your form and try again.");
         } else {
-          toast.error("Something went wrong. Please try again.");
+          toast.error(data.error);
         }
-        console.error("Error submitting form:", error);
       } else {
         setIsSubmitted(true);
       }
-    } catch (error) {
-      toast.error("Failed to submit. Please try again.");
+    } catch (error: any) {
+      toast.error(error.message || "Failed to submit. Please try again.");
       console.error("Error:", error);
     } finally {
       setIsLoading(false);
