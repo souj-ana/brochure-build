@@ -14,7 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      artists_waitlist: {
+        Row: {
+          art_shows_participation: string | null
+          created_at: string
+          email: string
+          id: string
+          instagram_handle: string
+          minimum_price: string
+          name: string
+          phone_number: string | null
+          qualifications: string | null
+          years_of_experience: number
+        }
+        Insert: {
+          art_shows_participation?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          instagram_handle: string
+          minimum_price: string
+          name: string
+          phone_number?: string | null
+          qualifications?: string | null
+          years_of_experience: number
+        }
+        Update: {
+          art_shows_participation?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          instagram_handle?: string
+          minimum_price?: string
+          name?: string
+          phone_number?: string | null
+          qualifications?: string | null
+          years_of_experience?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
