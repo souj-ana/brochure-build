@@ -16,9 +16,11 @@ export type Database = {
     Tables: {
       artists_waitlist: {
         Row: {
+          accepts_commissioned_work: boolean
           art_shows_participation: string | null
           created_at: string
           email: string
+          hosts_workshops: boolean
           id: string
           instagram_handle: string
           minimum_price: string
@@ -28,9 +30,11 @@ export type Database = {
           years_of_experience: number
         }
         Insert: {
+          accepts_commissioned_work?: boolean
           art_shows_participation?: string | null
           created_at?: string
           email: string
+          hosts_workshops?: boolean
           id?: string
           instagram_handle: string
           minimum_price: string
@@ -40,9 +44,11 @@ export type Database = {
           years_of_experience: number
         }
         Update: {
+          accepts_commissioned_work?: boolean
           art_shows_participation?: string | null
           created_at?: string
           email?: string
+          hosts_workshops?: boolean
           id?: string
           instagram_handle?: string
           minimum_price?: string
