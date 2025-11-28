@@ -115,6 +115,14 @@ const Home = () => {
                 We are an artist first company. We will add our platform & transaction fee to the price artist sets for the painting.
               </AccordionContent>
             </AccordionItem>
+            <AccordionItem value="item-4" className="border-border">
+              <AccordionTrigger className="text-lg font-semibold text-foreground hover:text-primary">
+                How is Vault different from other marketplaces?
+              </AccordionTrigger>
+              <AccordionContent className="text-muted-foreground text-base leading-relaxed">
+                Vault is one shop stop, for all your needs. Manage your portfolio, sell your work, accept commissioned work and schedule workshops. In addition, you will have the benefit of buyers that vault attracts from Internet.
+              </AccordionContent>
+            </AccordionItem>
           </Accordion>
           <p className="text-center text-muted-foreground mt-8">
             Have more questions? Reach out to <a href="mailto:artist@yourvault.art" className="text-primary hover:underline">artist@yourvault.art</a>
