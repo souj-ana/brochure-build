@@ -1,6 +1,6 @@
 import { Header } from "@/components/Header";
 import { useNavigate } from "react-router-dom";
-import { Palette, TrendingUp, Users } from "lucide-react";
+import { Palette, TrendingUp, Users, Eye } from "lucide-react";
 import { HeroButton } from "@/components/ui/button-variants";
 import {
   Accordion,
@@ -17,6 +17,11 @@ const Home = () => {
       icon: <Palette className="w-12 h-12 text-primary" />,
       title: "Showcase Your Work",
       description: "Your own digital storefront, highlight your unique artistic style and attract the right audience."
+    },
+    {
+      icon: <Eye className="w-12 h-12 text-primary" />,
+      title: "Get Discovered",
+      description: "Reach new audiences and collectors through our curated platform designed to spotlight emerging talent."
     },
     {
       icon: <TrendingUp className="w-12 h-12 text-primary" />,
@@ -55,7 +60,7 @@ const Home = () => {
       {/* Features Grid */}
       <section className="py-24 px-6 bg-secondary/30">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
               <div 
                 key={index}
