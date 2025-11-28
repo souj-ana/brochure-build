@@ -21,7 +21,7 @@ const Home = () => {
     {
       icon: <Eye className="w-12 h-12 text-primary" />,
       title: "Get Discovered",
-      description: "Reach new audiences and collectors through our curated platform designed to spotlight emerging talent."
+      description: "Reach new audiences and collectors through our discover designed to spotlight emerging talent according to buyers taste and need."
     },
     {
       icon: <TrendingUp className="w-12 h-12 text-primary" />,
