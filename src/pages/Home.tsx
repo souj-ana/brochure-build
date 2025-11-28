@@ -93,18 +93,18 @@ const Home = () => {
           <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1" className="border-border">
               <AccordionTrigger className="text-lg font-semibold text-foreground hover:text-primary">
-                Will Vault charge a fee for creating my portfolio on their platform?
+                Can I schedule and sell workshops through Vault?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                No, Vault will not charge a fee for creating portfolio.
+                Yes. We are working on feature to include workshops both virtual and realtime. Buyers can sign up and pay.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2" className="border-border">
               <AccordionTrigger className="text-lg font-semibold text-foreground hover:text-primary">
-                Can I sell prints of my original paintings?
+                Does Vault sell my paintings as well?
               </AccordionTrigger>
               <AccordionContent className="text-muted-foreground text-base leading-relaxed">
-                No, Vault exclusively sells original pieces only. If you intend to sell prints, we recommend using other platforms and do not list that painting on our platform.
+                Yes. Buyers can go to yourvault.art and go through discovery steps and buy from the marketplace.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-3" className="border-border">
