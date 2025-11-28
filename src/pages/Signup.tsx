@@ -184,7 +184,7 @@ const Signup = () => {
 
               {/* Qualifications */}
               <div>
-                <Label htmlFor="qualifications" className="text-base">Qualifications: Awards (Optional)</Label>
+                <Label htmlFor="qualifications" className="text-base">Style of Painting (Optional)</Label>
                 <Textarea
                   id="qualifications"
                   name="qualifications"
