@@ -42,7 +42,7 @@ const Home = () => {
             <span className="bg-gradient-hero bg-clip-text text-transparent">Your Price.</span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto animate-slide-up">
-            Join a vibrant community where artists thrive, sell their work, and connect with community who appreciate true creativity. Be part of something extraordinary.
+            Join a vibrant community where artists thrive, get discovered, and connect with community who appreciate true creativity. Be part of something extraordinary.
           </p>
           <div className="flex justify-center animate-slide-up" style={{ animationDelay: "0.2s" }}>
             <HeroButton onClick={() => navigate("/signup")} className="text-lg px-12 py-6">
