@@ -244,7 +244,6 @@ const Signup = () => {
                   value={formData.minimum_price}
                   onChange={handleChange}
                   required
-                  placeholder="e.g., $500 or $50/sqft"
                   className="mt-2 h-12 border-2"
                 />
               </div>
