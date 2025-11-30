@@ -19,6 +19,7 @@ export type Database = {
           accepts_commissioned_work: boolean
           art_shows_participation: string | null
           created_at: string
+          data_processing_consent: boolean
           email: string
           hosts_workshops: boolean
           id: string
@@ -35,6 +36,7 @@ export type Database = {
           accepts_commissioned_work?: boolean
           art_shows_participation?: string | null
           created_at?: string
+          data_processing_consent?: boolean
           email: string
           hosts_workshops?: boolean
           id?: string
@@ -51,6 +53,7 @@ export type Database = {
           accepts_commissioned_work?: boolean
           art_shows_participation?: string | null
           created_at?: string
+          data_processing_consent?: boolean
           email?: string
           hosts_workshops?: boolean
           id?: string
