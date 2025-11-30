@@ -22,6 +22,7 @@ interface ArtistApplication {
   accepts_commissioned_work: boolean
   hosts_workshops: boolean
   marketing_consent: boolean
+  data_processing_consent: boolean
 }
 
 function getRateLimitKey(req: Request): string {
@@ -160,6 +161,7 @@ Deno.serve(async (req) => {
         accepts_commissioned_work: applicationData.accepts_commissioned_work,
         hosts_workshops: applicationData.hosts_workshops,
         marketing_consent: applicationData.marketing_consent ?? false,
+        data_processing_consent: applicationData.data_processing_consent ?? false,
       })
       .select()
       .single()

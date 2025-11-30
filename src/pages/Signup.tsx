@@ -57,6 +57,7 @@ const Signup = () => {
           accepts_commissioned_work: formData.accepts_commissioned_work === "yes",
           hosts_workshops: formData.hosts_workshops === "yes",
           marketing_consent: formData.marketing_consent,
+          data_processing_consent: formData.privacy_accepted,
         },
       });
 
