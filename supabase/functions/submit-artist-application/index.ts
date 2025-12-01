@@ -1,4 +1,7 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.3'
+import { Resend } from 'https://esm.sh/resend@4.0.0'
+
+const resend = new Resend(Deno.env.get('RESEND_API_KEY'))
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -138,6 +141,46 @@ Deno.serve(async (req) => {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' },
         }
       )
+    }
+
+    // Send email notification with form data
+    try {
+      const emailHtml = `
+        <h2>New Artist Application Received</h2>
+        <h3>Contact Information</h3>
+        <p><strong>Name:</strong> ${applicationData.name}</p>
+        <p><strong>Email:</strong> ${applicationData.email}</p>
+        <p><strong>Phone:</strong> ${applicationData.phone_number || 'Not provided'}</p>
+        <p><strong>Instagram:</strong> ${applicationData.instagram_handle}</p>
+        
+        <h3>Artist Details</h3>
+        <p><strong>Style of Painting:</strong> ${applicationData.qualifications || 'Not provided'}</p>
+        <p><strong>Years of Experience:</strong> ${applicationData.years_of_experience}</p>
+        <p><strong>Art Shows Participation:</strong> ${applicationData.art_shows_participation || 'Not provided'}</p>
+        <p><strong>Minimum Price:</strong> ${applicationData.minimum_price}</p>
+        
+        <h3>Services</h3>
+        <p><strong>Accepts Commissioned Work:</strong> ${applicationData.accepts_commissioned_work ? 'Yes' : 'No'}</p>
+        <p><strong>Hosts Workshops:</strong> ${applicationData.hosts_workshops ? 'Yes' : 'No'}</p>
+        
+        <h3>Consent</h3>
+        <p><strong>Data Processing Consent:</strong> ${applicationData.data_processing_consent ? 'Yes' : 'No'}</p>
+        <p><strong>Marketing Consent:</strong> ${applicationData.marketing_consent ? 'Yes' : 'No'}</p>
+        
+        <p><em>Submitted at: ${new Date().toISOString()}</em></p>
+      `
+
+      await resend.emails.send({
+        from: 'Vault Artist Applications <onboarding@resend.dev>',
+        to: ['artist@yourvault.art'],
+        subject: `New Artist Application: ${applicationData.name}`,
+        html: emailHtml,
+      })
+      
+      console.log('Email notification sent successfully')
+    } catch (emailError) {
+      console.error('Failed to send email notification:', emailError)
+      // Continue with database insertion even if email fails
     }
 
     // Initialize Supabase client with service role key for inserting data
