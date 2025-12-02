@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -304,9 +305,9 @@ const Signup = () => {
                     </Label>
                     <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">
                       I acknowledge that I have read and agree to the{" "}
-                      <a href="https://yourvault.art/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                      <Link to="/privacy" className="text-primary hover:underline font-medium">
                         Privacy Policy
-                      </a>{" "}
+                      </Link>{" "}
                       of Rcube Technologies LLC and consent to the collection, use, and processing of my personal data (including name, email, phone number, Instagram handle, qualifications, and portfolio details) as described therein. This data will be used to review my artist application, provide the Service, and maintain our platform. Legal basis: Consent (GDPR Art. 6(1)(a)). You have the right to access, rectify, delete, port, or restrict processing of your data, and to withdraw consent at any time by contacting{" "}
                       <a href="mailto:artist@yourvault.art" className="text-primary hover:underline">artist@yourvault.art</a>. Withdrawal does not affect prior lawful processing. Data is retained as described in our Privacy Policy.
                     </p>
