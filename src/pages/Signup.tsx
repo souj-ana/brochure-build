@@ -303,7 +303,12 @@ const Signup = () => {
                       Data Processing Agreement (Required) *
                     </Label>
                     <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">
-                      I consent to Vault (data controller) processing my personal information (name, email, phone number, Instagram handle, qualifications, and portfolio details) for the purpose of reviewing my artist application and account setup. Legal basis: Consent (GDPR Art. 6(1)(a)). Data retention: Your data will be stored for 2 years or until you request deletion. You have the right to access, rectify, delete, or port your data, and to withdraw consent at any time by contacting <a href="mailto:artist@yourvault.art" className="text-primary hover:underline">artist@yourvault.art</a>. Withdrawal does not affect prior processing.
+                      I acknowledge that I have read and agree to the{" "}
+                      <a href="https://yourvault.art/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-medium">
+                        Privacy Policy
+                      </a>{" "}
+                      of Rcube Technologies LLC and consent to the collection, use, and processing of my personal data (including name, email, phone number, Instagram handle, qualifications, and portfolio details) as described therein. This data will be used to review my artist application, provide the Service, and maintain our platform. Legal basis: Consent (GDPR Art. 6(1)(a)). You have the right to access, rectify, delete, port, or restrict processing of your data, and to withdraw consent at any time by contacting{" "}
+                      <a href="mailto:artist@yourvault.art" className="text-primary hover:underline">artist@yourvault.art</a>. Withdrawal does not affect prior lawful processing. Data is retained as described in our Privacy Policy.
                     </p>
                   </div>
                 </div>
