@@ -4,7 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ExternalLink, Award, Calendar, Star, Palette, MapPin, Brush, CheckCircle, XCircle } from "lucide-react";
+import { Award, Calendar, Star, Palette, MapPin, Brush, CheckCircle, XCircle, Images, ShoppingBag } from "lucide-react";
+import { Link } from "react-router-dom";
 
 // Artist data from resume
 const mockArtist = {
@@ -25,7 +26,7 @@ const mockArtist = {
 As a CCRT Delhi Fellowship recipient (2016), Yashpal has demonstrated exceptional artistic merit and contribution to Indian art. His work has been exhibited at renowned venues including Jehangir Art Gallery, Taj Mahal Palace Hotel, and internationally at DUCTAC Gallery of Lights in Dubai.
 
 Yashpal's artistic journey spans over two decades, marked by numerous awards and recognitions including the Best Poster Award for National Film Festival (2022) and multiple medals at prestigious art competitions.`,
-  portfolioUrl: "/portfolio/yashpal-kamble",
+  portfolioUrl: "/artist/yashpal-kamble/portfolio",
   fellowship: "CCRT Delhi Fellowship in Painting (2016)",
   exhibits: [
     { title: "Solo Exhibition", venue: "Jehangir Art Gallery, Mumbai", date: "2012", type: "Solo Exhibition" },
@@ -120,14 +121,29 @@ const ArtistProfile = () => {
                 )}
               </div>
               
-              <Button 
-                size="lg" 
-                className="bg-gradient-hero hover:shadow-elegant transition-all duration-300"
-                onClick={() => window.location.href = mockArtist.portfolioUrl}
-              >
-                <ExternalLink className="mr-2 h-5 w-5" />
-                View Portfolio & Shop
-              </Button>
+              <div className="flex gap-3">
+                <Button 
+                  asChild
+                  size="lg" 
+                  className="bg-gradient-hero hover:shadow-elegant transition-all duration-300"
+                >
+                  <Link to={mockArtist.portfolioUrl}>
+                    <Images className="mr-2 h-5 w-5" />
+                    View Portfolio
+                  </Link>
+                </Button>
+                <Button 
+                  asChild
+                  size="lg" 
+                  variant="outline"
+                  className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                >
+                  <Link to={mockArtist.portfolioUrl}>
+                    <ShoppingBag className="mr-2 h-5 w-5" />
+                    Shop
+                  </Link>
+                </Button>
+              </div>
             </div>
           </div>
 
@@ -279,10 +295,12 @@ const ArtistProfile = () => {
                     Browse their complete collection and purchase original artwork.
                   </p>
                   <Button 
+                    asChild
                     className="w-full bg-gradient-hero hover:shadow-elegant transition-all duration-300"
-                    onClick={() => window.location.href = mockArtist.portfolioUrl}
                   >
-                    View Portfolio & Shop
+                    <Link to={mockArtist.portfolioUrl}>
+                      View Portfolio & Shop
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>
