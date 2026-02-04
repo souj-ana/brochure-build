@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ExternalLink, Award, Calendar, Star, Palette, MapPin } from "lucide-react";
+import { ExternalLink, Award, Calendar, Star, Palette, MapPin, Brush, CheckCircle, XCircle } from "lucide-react";
 
 // Mock data for the artist profile
 const mockArtist = {
@@ -13,6 +13,8 @@ const mockArtist = {
   location: "Santa Fe, New Mexico",
   styles: ["Abstract Expressionism", "Contemporary", "Mixed Media"],
   mediums: ["Oil on Canvas", "Acrylic", "Watercolor", "Collage"],
+  acceptsCommissions: true,
+  hostsWorkshops: true,
   introduction: `Elena Rodriguez is a contemporary artist whose work explores the intersection of emotion and landscape. Born in Mexico City and now based in Santa Fe, her paintings are deeply influenced by the vibrant colors and textures of the Southwest.
 
 With over 15 years of experience, Elena has developed a distinctive style that blends abstract expressionism with elements of traditional Mexican folk art. Her work often features bold, sweeping brushstrokes and a rich, earthy palette that evokes the desert landscapes she calls home.
@@ -108,12 +110,36 @@ const ArtistProfile = () => {
                 <span>{mockArtist.location}</span>
               </div>
               
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-2 mb-4">
                 {mockArtist.styles.map((style) => (
                   <Badge key={style} variant="secondary" className="text-sm">
                     {style}
                   </Badge>
                 ))}
+              </div>
+
+              {/* Services Available */}
+              <div className="flex flex-wrap gap-3 mb-6">
+                <div className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium ${
+                  mockArtist.acceptsCommissions 
+                    ? 'bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/30' 
+                    : 'bg-muted text-muted-foreground border border-border'
+                }`}>
+                  {mockArtist.acceptsCommissions ? (
+                    <CheckCircle className="h-4 w-4" />
+                  ) : (
+                    <XCircle className="h-4 w-4" />
+                  )}
+                  <Brush className="h-4 w-4" />
+                  {mockArtist.acceptsCommissions ? 'Available for Commissions' : 'Not Taking Commissions'}
+                </div>
+                
+                {mockArtist.hostsWorkshops && (
+                  <div className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/30">
+                    <CheckCircle className="h-4 w-4" />
+                    Hosts Workshops
+                  </div>
+                )}
               </div>
               
               <Button 
