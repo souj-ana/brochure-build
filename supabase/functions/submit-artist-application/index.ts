@@ -65,6 +65,17 @@ function checkRateLimit(key: string): { allowed: boolean; resetTime?: number } {
   return { allowed: true }
 }
 
+// HTML escape function to prevent XSS in email notifications
+function escapeHtml(unsafe: string): string {
+  if (!unsafe) return ''
+  return unsafe
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
+}
+
 function validateApplication(data: any): { valid: boolean; errors: string[] } {
   const errors: string[] = []
 
@@ -79,6 +90,10 @@ function validateApplication(data: any): { valid: boolean; errors: string[] } {
   }
   if (data.years_of_experience === undefined || typeof data.years_of_experience !== 'number' || data.years_of_experience < 0) {
     errors.push('Years of experience must be a positive number')
+  }
+  // Add reasonable range for years of experience
+  if (typeof data.years_of_experience === 'number' && data.years_of_experience > 100) {
+    errors.push('Years of experience must be 100 or less')
   }
   if (!data.minimum_price || typeof data.minimum_price !== 'string' || data.minimum_price.trim().length === 0) {
     errors.push('Minimum price is required')
@@ -96,6 +111,25 @@ function validateApplication(data: any): { valid: boolean; errors: string[] } {
   }
   if (data.instagram_handle && data.instagram_handle.length > 100) {
     errors.push('Instagram handle must be less than 100 characters')
+  }
+  
+  // Phone number format validation (optional field, but if provided should be valid)
+  if (data.phone_number && typeof data.phone_number === 'string' && data.phone_number.trim().length > 0) {
+    // Allow international formats: +1234567890, (123) 456-7890, 123-456-7890, etc.
+    const phoneRegex = /^[\d\s\-+()]+$/
+    if (!phoneRegex.test(data.phone_number)) {
+      errors.push('Phone number contains invalid characters')
+    }
+  }
+  
+  // Instagram handle validation
+  if (data.instagram_handle && typeof data.instagram_handle === 'string') {
+    // Remove @ if present for validation, allow alphanumeric, underscore, and period
+    const handle = data.instagram_handle.replace(/^@/, '')
+    const instagramRegex = /^[a-zA-Z0-9_.]+$/
+    if (!instagramRegex.test(handle)) {
+      errors.push('Instagram handle contains invalid characters')
+    }
   }
 
   return { valid: errors.length === 0, errors }
@@ -148,16 +182,16 @@ Deno.serve(async (req) => {
       const emailHtml = `
         <h2>New Artist Application Received</h2>
         <h3>Contact Information</h3>
-        <p><strong>Name:</strong> ${applicationData.name}</p>
-        <p><strong>Email:</strong> ${applicationData.email}</p>
-        <p><strong>Phone:</strong> ${applicationData.phone_number || 'Not provided'}</p>
-        <p><strong>Instagram:</strong> ${applicationData.instagram_handle}</p>
+        <p><strong>Name:</strong> ${escapeHtml(applicationData.name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(applicationData.email)}</p>
+        <p><strong>Phone:</strong> ${escapeHtml(applicationData.phone_number || 'Not provided')}</p>
+        <p><strong>Instagram:</strong> ${escapeHtml(applicationData.instagram_handle)}</p>
         
         <h3>Artist Details</h3>
-        <p><strong>Style of Painting:</strong> ${applicationData.qualifications || 'Not provided'}</p>
+        <p><strong>Style of Painting:</strong> ${escapeHtml(applicationData.qualifications || 'Not provided')}</p>
         <p><strong>Years of Experience:</strong> ${applicationData.years_of_experience}</p>
-        <p><strong>Art Shows Participation:</strong> ${applicationData.art_shows_participation || 'Not provided'}</p>
-        <p><strong>Minimum Price:</strong> ${applicationData.minimum_price}</p>
+        <p><strong>Art Shows Participation:</strong> ${escapeHtml(applicationData.art_shows_participation || 'Not provided')}</p>
+        <p><strong>Minimum Price:</strong> ${escapeHtml(applicationData.minimum_price)}</p>
         
         <h3>Services</h3>
         <p><strong>Accepts Commissioned Work:</strong> ${applicationData.accepts_commissioned_work ? 'Yes' : 'No'}</p>
