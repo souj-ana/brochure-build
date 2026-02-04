@@ -6,78 +6,56 @@ import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ExternalLink, Award, Calendar, Star, Palette, MapPin, Brush, CheckCircle, XCircle } from "lucide-react";
 
-// Mock data for the artist profile
+// Artist data from resume
 const mockArtist = {
-  name: "Elena Rodriguez",
-  avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
-  location: "Santa Fe, New Mexico",
-  styles: ["Abstract Expressionism", "Contemporary", "Mixed Media"],
-  mediums: ["Oil on Canvas", "Acrylic", "Watercolor", "Collage"],
+  name: "Yashpal Kamble",
+  avatar: "", // No profile image provided
+  location: "Panvel, Maharashtra, India",
+  styles: ["Contemporary Painting", "Professional Art"],
+  mediums: ["Oil Painting", "Acrylic", "Mixed Media"],
   acceptsCommissions: true,
   hostsWorkshops: true,
-  introduction: `Elena Rodriguez is a contemporary artist whose work explores the intersection of emotion and landscape. Born in Mexico City and now based in Santa Fe, her paintings are deeply influenced by the vibrant colors and textures of the Southwest.
+  education: [
+    { degree: "M.F.A in Painting", institution: "Sir J.J. School of Art, Mumbai", year: "2012" },
+    { degree: "B.F.A in Painting", institution: "Sir J.J. School of Art, Mumbai", year: "2010" },
+    { degree: "A.T.D", institution: "Chitrakala Mahavidyalaya, Latur", year: "2003" }
+  ],
+  introduction: `Yashpal Kamble is a professional artist with a Master of Fine Arts in Painting from the prestigious Sir J.J. School of Art, Mumbai. With formal training in both traditional and contemporary art techniques, his work reflects a deep understanding of artistic principles combined with a unique personal vision.
 
-With over 15 years of experience, Elena has developed a distinctive style that blends abstract expressionism with elements of traditional Mexican folk art. Her work often features bold, sweeping brushstrokes and a rich, earthy palette that evokes the desert landscapes she calls home.
+As a CCRT Delhi Fellowship recipient (2016), Yashpal has demonstrated exceptional artistic merit and contribution to Indian art. His work has been exhibited at renowned venues including Jehangir Art Gallery, Taj Mahal Palace Hotel, and internationally at DUCTAC Gallery of Lights in Dubai.
 
-Elena believes that art should be an emotional experience, inviting viewers to connect with their own feelings and memories through color and form.`,
-  portfolioUrl: "/portfolio/elena-rodriguez",
+Yashpal's artistic journey spans over two decades, marked by numerous awards and recognitions including the Best Poster Award for National Film Festival (2022) and multiple medals at prestigious art competitions.`,
+  portfolioUrl: "/portfolio/yashpal-kamble",
+  fellowship: "CCRT Delhi Fellowship in Painting (2016)",
   exhibits: [
-    {
-      title: "Colors of the Desert",
-      venue: "Santa Fe Art Museum",
-      date: "2024",
-      type: "Solo Exhibition"
-    },
-    {
-      title: "Contemporary Voices",
-      venue: "Albuquerque Museum of Art",
-      date: "2023",
-      type: "Group Exhibition"
-    },
-    {
-      title: "New Mexico Emerging Artists",
-      venue: "Taos Art Center",
-      date: "2022",
-      type: "Group Exhibition"
-    },
-    {
-      title: "Abstract Journeys",
-      venue: "Phoenix Art Gallery",
-      date: "2021",
-      type: "Solo Exhibition"
-    }
+    { title: "Solo Exhibition", venue: "Jehangir Art Gallery, Mumbai", date: "2012", type: "Solo Exhibition" },
+    { title: "Suchitra Art Gallery", venue: "Amritsar", date: "2025", type: "Group Exhibition" },
+    { title: "Pradarshak Art Gallery", venue: "Mumbai", date: "2025", type: "Group Exhibition" },
+    { title: "You.Art India Art Gallery", venue: "Mumbai", date: "2025", type: "Group Exhibition" },
+    { title: "Artsobo Art Gallery", venue: "Goregaon, Mumbai", date: "2024", type: "Group Exhibition" },
+    { title: "Taj Mahal Palace Exhibition", venue: "Taj Hotel, Mumbai", date: "2022", type: "Group Exhibition" },
+    { title: "Mumbai Art Festival", venue: "Nehru Centre, Mumbai", date: "2022", type: "Group Exhibition" },
+    { title: "Chitra Santhe", venue: "Bangalore", date: "2022", type: "Group Exhibition" },
+    { title: "India Art Festival", venue: "Mumbai", date: "2019", type: "Group Exhibition" },
+    { title: "DUCTAC Gallery of Lights", venue: "Emirates Mall, Dubai", date: "2016", type: "Group Exhibition" }
   ],
   awards: [
-    {
-      title: "Best in Show",
-      organization: "Santa Fe Art Festival",
-      year: "2024"
-    },
-    {
-      title: "Emerging Artist Award",
-      organization: "New Mexico Arts Council",
-      year: "2022"
-    },
-    {
-      title: "People's Choice Award",
-      organization: "Southwest Art Competition",
-      year: "2021"
-    }
+    { title: "Best Poster Award", organization: "National Film Festival", year: "2022" },
+    { title: "CCRT Delhi Fellowship in Painting", organization: "CCRT Delhi", year: "2016" },
+    { title: "Miss Dolly Cursetji First Drawing Award", organization: "J.J. School of Art", year: "2010" },
+    { title: "Best Painting Award", organization: "Art Society of India", year: "2010" },
+    { title: "Malhar Festival Painting Award", organization: "St. Xavier's College, Mumbai", year: "2008" },
+    { title: "Best Painting Award", organization: "J.J. School of Art Annual Exhibition", year: "2008" }
   ],
   reviews: [
     {
-      text: "Elena's work captures the soul of the Southwest in ways I've never seen before. Her use of color is nothing short of breathtaking.",
-      author: "Art Collector Magazine",
+      text: "Yashpal's work demonstrates exceptional mastery of technique combined with a deeply personal artistic vision that speaks to the contemporary Indian experience.",
+      author: "Mumbai Art Festival Review",
       rating: 5
     },
     {
-      text: "A true visionary. Her paintings have a way of stopping you in your tracks and making you feel something profound.",
-      author: "Sarah Mitchell, Art Curator",
-      rating: 5
-    },
-    {
-      text: "Rodriguez's latest collection demonstrates remarkable growth and artistic maturity. A must-see for any serious collector.",
-      author: "Southwest Arts Review",
+      text: "A CCRT Fellowship recipient whose work has graced prestigious venues from Jehangir Art Gallery to Dubai's DUCTAC. A rising star in Indian contemporary art.",
+      author: "Indian Art Quarterly",
       rating: 5
     }
   ]
